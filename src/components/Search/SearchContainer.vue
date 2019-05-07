@@ -2,11 +2,11 @@
 	<div class="search-container">
 		<el-row :gutter="20">
 			<el-col :span="item.span || 4" v-for="(item,index) in search.components">
-				<el-input v-if="item.type==='input'" size="small" v-model="item.value" :placeholder="item.placeholder"></el-input>
-				<el-select v-else-if="item.type==='select'" size="small" v-model="item.value" placeholder="item.placeholder">
+				<el-input v-if="item.type==='input'" size="small" v-model="item.value" :placeholder="item.placeholder" clearable></el-input>
+				<el-select v-else-if="item.type==='select'" size="small" v-model="item.value" :placeholder="item.placeholder" clearable>
 			    <el-option
-			      v-for="oitem in item.options"
-			      :key="item.key"
+			      v-for="(oitem,oi) in item.options"
+			      :key="oi"
 			      :label="oitem.label"
 			      :value="oitem.value">
 			    </el-option>
@@ -16,7 +16,8 @@
 			  	size="small"
 		      v-model="item.value"
 		      type="date"
-		      placeholder="选择日期">
+		      placeholder="选择日期"
+		      clearable>
 		    </el-date-picker>
 
 			</el-col>

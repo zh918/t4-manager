@@ -15,9 +15,9 @@
 				search: {
 					components:[
 						{key:'attrName1', type:'input', placeholder:'请输入1', value:''},
-						{key:'attrName2', type:'input', placeholder:'请输入2', value:''},
+						{key:'attrName2', type:'select', placeholder:'请输入2', value:'', options:[{label:'是',value:1},{label:'否',value:0}]},
 						{key:'attrName3', type:'input', placeholder:'请输入3', value:''},
-						{key:'attrName4', type:'input', placeholder:'请输入4', value:''},
+						{key:'attrName4', type:'date', placeholder:'请输入4', value:''},
 						{key:'attrName5', type:'input', placeholder:'请输入5', value:''},
 						{key:'attrName6', type:'input', placeholder:'请输入6', value:''},
 						{key:'attrName7', type:'input', placeholder:'请输入7', value:''},
