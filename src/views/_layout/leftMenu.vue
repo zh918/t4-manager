@@ -33,7 +33,21 @@
 
               }]
           },
-          
+          {
+           name: "用户管理",
+           icon: 'icon-jihuaguanli',
+           children: [
+             {
+               name: "用户管理",
+               path: "/userOut",
+               icon: 'icon-renyuanguanli'
+             },{
+               name: "角色管理",
+               path: "/roleOut",
+               icon: 'icon-renyuanguanli'
+             }
+           ]
+          },
         
         ],
       };
