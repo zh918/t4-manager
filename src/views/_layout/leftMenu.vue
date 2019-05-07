@@ -33,75 +33,7 @@
 
               }]
           },
-          {
-           name: "贷中管理",
-           icon: 'icon-jihuaguanli',
-           children: [{
-             name: "放款申请及审批",
-             path: "/middle/loanApply/list",
-           }, {
-             name: "放款确认",
-             path: "/middle/loanConfirm/list",
-           },{
-             name: "资金缺口监控管理",
-             path: "/middle/fundGapMonitoring/list",
-           }]
-          },
-          {
-           name: "贷后管理",
-           icon: 'icon-jihuaguanli',
-           children: [{
-             name: "还款对账单",
-             path: "/after/repaymentStatement/list",
-           }, {
-             name: "逾期管理",
-             path: "/after/overdue/list",
-           },
-           {
-             name: "业务监控及预警管理",
-             path: "/after/businessMonitoringAndWarning/list",
-           }]
-          },
-          {
-           name: "客户及产品管理",
-           icon: 'icon-jihuaguanli',
-           children: [{
-             name: "客户管理",
-             children: [{
-               name:'签约主体管理(加盟商)',
-               path:"/customerAndProduct/sign/list"
-             },{
-               name:'借款主体管理(门店)',
-               path:"/customerAndProduct/loan/list"
-             }]
-           }, {
-             name: "产品管理",
-             path: "/customerAndProduct/product/list",
-           }]
-          },
-          {
-           name: "保理账户管理",
-           icon: 'icon-jihuaguanli',
-           children: [{
-             name: "收款账户管理",
-               path: "/account/accountManage",
-           }]
-          },
-          {
-           name: "用户管理",
-           icon: 'icon-jihuaguanli',
-           children: [
-             {
-               name: "用户管理",
-               path: "/userOut",
-               icon: 'icon-renyuanguanli'
-             },{
-               name: "角色管理",
-               path: "/roleOut",
-               icon: 'icon-renyuanguanli'
-             }
-           ]
-          },
+          
         
         ],
       };
