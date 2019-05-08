@@ -1,1 +1,1 @@
-types.js
+export const LOADING_ALL_DICT = 'LOADING_ALL_DICT'
