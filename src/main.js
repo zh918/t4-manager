@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store'
 import './config/env'
-
+import './common/http'
 import './components/index'
 
 import ElementUI from 'element-ui'

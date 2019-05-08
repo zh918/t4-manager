@@ -44,7 +44,30 @@ class http {
 	}
 
 	static get() {
+		let ran = Math.floor(Math.random() * 100);
 
+		let option = Object.assign({},headers);
+		if(Cookie.get('accessToken')){
+			Object.assign(option,{Authorization : Cookie.get('accessToken')});
+		} else {
+	        globalVue.$router.push({path:'/login'});
+		}
+		var instance = axios.create({
+			timeout: 1000 * 30,
+			headers: option
+		});
+
+		return instance.get(url).then(function(res){
+
+			if(res.data.errorCode != 0){
+				globalVue.$alert(res.data.errorMsg, '提示', {
+					confirmButtonText: '确定'
+				});
+			}
+			return res.data;
+		}).catch(res=>{
+			console.log('error',res);
+		});
 	}
 }
 
