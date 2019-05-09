@@ -3,10 +3,10 @@
 		<div class="login-box">
 			<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0" class="login-ruleForm">
 			  <el-form-item prop="userName">
-			  	<el-input size="small" placeholder="请输入用户名" prefix-icon="el-icon-search" v-model="ruleForm.userName"  autocomplete="off"></el-input>
+			  	<el-input size="small" placeholder="请输入用户名" prefix-icon="el-icon-user" v-model="ruleForm.userName"  autocomplete="off"></el-input>
 			  </el-form-item>
 			  <el-form-item prop="userPwd">
-			  	<el-input type="password" size="small" placeholder="请输入用户名" prefix-icon="el-icon-search" v-model="ruleForm.userPwd"  autocomplete="off"></el-input>
+			  	<el-input type="password" size="small" placeholder="请输入密码" prefix-icon="el-icon-lock" v-model="ruleForm.userPwd"  autocomplete="off"></el-input>
 			  </el-form-item>
 			  <el-form-item>
 			    <el-button type="primary" class="btn-login" size="mini" @click="handleLogin('ruleForm')">登录</el-button>
@@ -61,19 +61,19 @@
 		align-items: center;
 		width: 100%;
 		height: 100%;
-		border: 1px solid red;
+		/*border: 1px solid red;*/
 
 		.login-box {
 			position: relative;
 			width: 320px;
-			height: 200px;
+			height: 180px;
 			padding: 10px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
 
 			.login-ruleForm {
-				padding-top: 20px;
-				border:1px solid red;
+				padding-top: 15px;
+				/*border:1px solid red;*/
 			}
 			.btn-login {
 				/*position: absolute;
