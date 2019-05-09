@@ -1,25 +1,56 @@
 <template>
-	<el-container style="height: 100%;">
-	  <el-header>{{systemTitle}}</el-header>
-	  <div class="http-line"></div>
-	  <div class="space-line"></div>
-	  <el-container>
-	    <el-aside width="210px"><left-menu></left-menu></el-aside>
-	    <el-container>
-	      <el-main>
-	      	<el-breadcrumb separator-class="el-icon-arrow-right">
-    			  <el-breadcrumb-item v-for="(item,i) in initBreadcrumb">{{item.name}}</el-breadcrumb-item>
-    			</el-breadcrumb>
-          <div class="space-line"></div>
-          <div class="space-line"></div>
-          <div class="space-line"></div>
-          <div class="space-line"></div>
-	      	<router-view></router-view>
-	      </el-main>
-	      <el-footer height="30">版权归属@T4管理系统</el-footer>
-	    </el-container>
-	  </el-container>
-	</el-container>
+  <div>
+  	<el-container style="height: 100%;">
+  	  <el-header>
+        <div class="header-left">{{systemTitle}}</div>
+        <div class="header-right">
+          <i class="el-icon-user"></i>&nbsp;stephen&nbsp;
+          <el-button type="text" @click="handleChangePwd('ruleForm')">修改密码</el-button>
+          <el-button type="text">退出</el-button>
+        </div>
+        
+      </el-header>
+  	  <div class="http-line"></div>
+  	  <div class="space-line"></div>
+  	  <el-container>
+  	    <el-aside width="210px"><left-menu></left-menu></el-aside>
+  	    <el-container>
+  	      <el-main>
+  	      	<el-breadcrumb separator-class="el-icon-arrow-right">
+      			  <el-breadcrumb-item v-for="(item,i) in initBreadcrumb">{{item.name}}</el-breadcrumb-item>
+      			</el-breadcrumb>
+            <div class="space-line"></div>
+            <div class="space-line"></div>
+            <div class="space-line"></div>
+            <div class="space-line"></div>
+  	      	<router-view></router-view>
+  	      </el-main>
+  	      <el-footer height="30">版权归属@T4管理系统</el-footer>
+  	    </el-container>
+  	  </el-container>
+  	</el-container>
+
+    <!-- 修改密码 -->
+    <el-dialog title="修改密码" 
+      :visible.sync="dialogFormVisible" 
+      :modal="true" 
+      :append-to-body="true" 
+      width="500px">
+      <el-form :model="formChangePwd" :rules="rules" ref="ruleForm" label-position="left" label-width="80px" size="small">
+        <el-form-item label="原密码" prop="pwd1">
+          <el-input type="password" size="small" v-model="formChangePwd.pwd1" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码" prop="pwd2">
+          <el-input type="password" size="small" v-model="formChangePwd.pwd2" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="handleSubmit('ruleForm')" size="small">确 定</el-button>
+      </div>
+    </el-dialog>
+    
+  </div>
 </template>
 
 <script>
@@ -30,6 +61,21 @@
 			return {
 				systemTitle:'T4管理系统',
         breadcrumbs:[], // {name:'', path:''}
+
+        dialogFormVisible:false,
+        formChangePwd:{
+          pwd1:null,
+          pwd2:null
+        },
+        rules:{
+          pwd1:[
+            { required: true, message: '请输入原密码', trigger: 'blur' },
+          ],
+          pwd2:[
+            { required: true, message: '请输入新密码', trigger: 'blur' },
+          ]
+        }
+
 			}
 		},
 		components:{
@@ -70,7 +116,21 @@
 
     },
     methods: {
-
+      handleChangePwd(formName) {
+        this.dialogFormVisible = true;
+        this.$refs[formName].resetFields();
+        this.formChangePwd.pwd1 = null;
+        this.formChangePwd.pwd2 = null;
+      },
+      handleSubmit(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            return false;
+          }
+        });
+      }
     }
 	}
 </script>
@@ -81,6 +141,20 @@
     color: #fff;
     text-align: left;
     line-height: 60px;
+
+
+  }
+
+  .header-left {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .header-right {
+    display: inline-block;
+    width: 49%;
+    text-align: right;
+
   }
 
   .space-line {
