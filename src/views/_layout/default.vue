@@ -1,12 +1,11 @@
 <template>
-  <div>
   	<el-container style="height: 100%;">
   	  <el-header>
         <div class="header-left">{{systemTitle}}</div>
         <div class="header-right">
           <i class="el-icon-user"></i>&nbsp;stephen&nbsp;
           <el-button type="text" @click="handleChangePwd('ruleForm')">修改密码</el-button>
-          <el-button type="text">退出</el-button>
+          <el-button type="text" @click="handleLoginOut">退出</el-button>
         </div>
         
       </el-header>
@@ -28,29 +27,27 @@
   	      <el-footer height="30">版权归属@T4管理系统</el-footer>
   	    </el-container>
   	  </el-container>
-  	</el-container>
 
-    <!-- 修改密码 -->
-    <el-dialog title="修改密码" 
-      :visible.sync="dialogFormVisible" 
-      :modal="true" 
-      :append-to-body="true" 
-      width="500px">
-      <el-form :model="formChangePwd" :rules="rules" ref="ruleForm" label-position="left" label-width="80px" size="small">
-        <el-form-item label="原密码" prop="pwd1">
-          <el-input type="password" size="small" v-model="formChangePwd.pwd1" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="新密码" prop="pwd2">
-          <el-input type="password" size="small" v-model="formChangePwd.pwd2" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
-        <el-button type="primary" @click="handleSubmit('ruleForm')" size="small">确 定</el-button>
-      </div>
-    </el-dialog>
-    
-  </div>
+      <!-- 修改密码 -->
+      <el-dialog title="修改密码" 
+        :visible.sync="dialogFormVisible" 
+        :modal="true" 
+        :append-to-body="true" 
+        width="500px">
+        <el-form :model="formChangePwd" :rules="rules" ref="ruleForm" label-position="left" label-width="80px" size="small">
+          <el-form-item label="原密码" prop="pwd1">
+            <el-input type="password" size="small" v-model="formChangePwd.pwd1" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="新密码" prop="pwd2">
+            <el-input type="password" size="small" v-model="formChangePwd.pwd2" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false" size="small">取 消</el-button>
+          <el-button type="primary" @click="handleSubmit('ruleForm')" size="small">确 定</el-button>
+        </div>
+      </el-dialog>
+  	</el-container>
 </template>
 
 <script>
@@ -118,7 +115,7 @@
     methods: {
       handleChangePwd(formName) {
         this.dialogFormVisible = true;
-        this.$refs[formName].resetFields();
+        this.$refs[formName] && this.$refs[formName].resetFields();
         this.formChangePwd.pwd1 = null;
         this.formChangePwd.pwd2 = null;
       },
@@ -130,7 +127,27 @@
             return false;
           }
         });
+      },
+      handleLoginOut() {
+        this.$confirm('是否退出当前系统?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          // todo api
+          this.$message({
+            type: 'success',
+            message: '成功退出!'
+          });
+          this.$router.push({path:'/login'})
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取退出'
+          });          
+        });
       }
+
     }
 	}
 </script>

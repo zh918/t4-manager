@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
-import store from './store'
+import store from './store/index'
 import './config/env'
 import './common/http'
 import './components/index'
+import './common/storage'
+import {authRouter} from './common/auth'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -21,3 +23,4 @@ const globalVue = new Vue({
 }).$mount('#app')
 
 window.globalVue = globalVue
+authRouter(globalVue)

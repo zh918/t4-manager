@@ -158,7 +158,7 @@
 				];
 
 				this.page.currentPage = page.currentPage;
-				this.page.total = 80;
+				this.page.total = 50;
 
 			},
 			handleOperateAdd() {

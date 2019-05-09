@@ -115,8 +115,9 @@
 
 				window.searchCache = this.search;
 				
-				this.$listeners.search(this.search.parms, this.search.page);
-				// this.$emit('search', this.search.parms, this.search.page)
+				// this.$parent.initSearch(this.search.parms, this.search.page);
+				// this.$listeners.search(this.search.parms, this.search.page);
+				this.$emit('search', this.search.parms, this.search.page)
 			},
 			handleReset() {
 				let _this = this;
@@ -128,6 +129,7 @@
 			handleResetPage(flag) {
 				if (flag) {
 					// 重置分页数据
+					window.searchCache = null;
 					this.search.page.currentPage = 1;
 					// this.search.page.total = 0;
 				}

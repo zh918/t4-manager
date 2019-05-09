@@ -1,7 +1,7 @@
 // store入口管理
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createLogger from './plugins/logger'
+// import createLogger from './plugins/logger'
 import dict from './modules/dict/mutations'
 // import source from './modules/source/mutations'
 
@@ -17,5 +17,5 @@ export default new Vuex.Store({
       dict
     },
     strict: true,
-    plugins: false ? [createLogger()] : []
+    plugins: false ? [] : []
 })
