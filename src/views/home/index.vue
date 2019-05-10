@@ -2,7 +2,11 @@
 	<div>
 		<search-container :initData="search" @search="initSearch"></search-container>
 		<operate-container :operateGroup="operateGroup"></operate-container>
-		<table-container :initHead="tableHead" :initData="tableData" :pagination="page"></table-container>
+		<table-container :initHead="tableHead" :initData="tableData" :pagination="page">
+			<template #name="row">{{row.name}}stephen</template>
+			<template #city="row">{{row.city}}111</template>
+			<!-- <template #operate="row">操作哦</template> -->
+		</table-container>
 	</div>
 </template>
 
@@ -55,14 +59,14 @@
 					{prop:"name", label:"姓名"},
 					{prop:"province", label:"省份"},
 					{prop:"city", label:"市区"},
-					{isOperate:true, label:"详情", cb: (scope)=>{
+					{isOperate:true, prop:'operate', label:"详情", cb: (scope)=>{
 						this.$router.push({path:'/home/details'})
 					}},
-					{isOperate:true, label:"删除", cb: this.handleOperateAdd},
-					{isOperate:true, label:"新增2", cb: (scope)=>{
+					{isOperate:true, prop:'operate', label:"删除", cb: this.handleOperateAdd},
+					{isOperate:true, prop:'operate', label:"新增2", cb: (scope)=>{
 						console.log('scope->', scope)
 					}},
-					{isOperate:true, label:"新增3", cb: (scope)=>{
+					{isOperate:true, prop:'operate', label:"新增3", cb: (scope)=>{
 						console.log('scope->', scope)
 					}},
 				],

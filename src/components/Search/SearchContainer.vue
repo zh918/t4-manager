@@ -116,8 +116,8 @@
 				window.searchCache = this.search;
 				
 				// this.$parent.initSearch(this.search.parms, this.search.page);
-				// this.$listeners.search(this.search.parms, this.search.page);
-				this.$emit('search', this.search.parms, this.search.page)
+				this.$listeners.search(this.search.parms, this.search.page);
+				// this.$emit('search', this.search.parms, this.search.page)
 			},
 			handleReset() {
 				let _this = this;

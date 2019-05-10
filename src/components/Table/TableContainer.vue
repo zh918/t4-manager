@@ -8,26 +8,30 @@
 	    <el-table-column
 	    	:key="index"
 	    	v-for="(item, index) in initHead.filter(h=>!h.isOperate)"
-	      :prop="item.prop"
 	      :label="item.label"
 	      :fixed="item.fixed?item.fixed:false">
+	      <template slot-scope="scope">
+	        <slot :name="item.prop" v-bind="scope.row">{{ scope.row[item.prop] }}</slot>
+	      </template>
 	    </el-table-column>
 	    <el-table-column
-	    	v-if="initHead.some(h=>h.isOperate)"
 	      fixed="right"
 	      label="操作"
 	      width="220">
 	      <template slot-scope="scope">
-	      	<el-button 
-	      		v-for="(item, index) in initHead.filter(h=>h.isOperate)"
-	          @click.native.prevent="item.cb(scope)"
-	          type="text"
-	          size="small">
-	          {{item.label}}
-	        </el-button>
+	      	<slot name="operate" v-bind="scope.row">
+		      	<el-button 
+		      		v-for="(item, index) in initHead.filter(h=>h.isOperate)"
+		          @click.native.prevent="item.cb(scope)"
+		          type="text"
+		          size="small">
+		          {{item.label}}
+		        </el-button>
+	      	</slot>
       	</template>
 	    </el-table-column>
 	  </el-table>
+
 		<div class="pagination text-right">
 		  <el-pagination
 		    @size-change="handleSizeChange"
