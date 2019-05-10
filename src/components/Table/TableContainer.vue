@@ -32,11 +32,11 @@
 		  <el-pagination
 		    @size-change="handleSizeChange"
 		    @current-change="handleCurrentChange"
-		    :current-page="page.currentPage"
+		    :current-page="pagination.currentPage"
 		    :page-sizes="page.pageSizes"
 		    :page-size="page.size"
 		    :layout="page.layout"
-		    :total="page.total">
+		    :total="pagination.total">
 		  </el-pagination>
 		</div>		
 	</div>
@@ -57,7 +57,6 @@
 	      	total:100
       	}
 
-
       }
     },
    	created() {
@@ -69,7 +68,7 @@
 	   		this.page.pageSizes = this.$props.pagination.pageSizes || this.page.pageSizes
 	   		this.page.pageSize = this.$props.pagination.pageSize || this.page.pageSize
 	   		this.page.layout = this.$props.pagination.layout || this.page.layout
-	   		this.page.total = this.$props.pagination.total || this.page.total
+	   		// this.page.total = this.$props.pagination.total || this.page.total
    		}
 
    	},
