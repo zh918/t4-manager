@@ -5,7 +5,7 @@ export const authRouter = (globalVue)=> {
 	router.beforeEach((to,from,next)=>{
 		if (!Cookie.get('accessToken') && to.name != 'login'){
 			sessionStorage.setItem("beforeUrl",to.path);
-		 	globalVue.$message("登录超时或用户信息丢失，请重新登录");
+		 	globalVue.$message.error("登录超时或用户信息丢失，请重新登录");
 			next({name:'login'});
 		}
 		else{
