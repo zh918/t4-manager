@@ -11,6 +11,7 @@ import {authRouter} from './common/auth'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './style/element-ui-reset.less'
+import './style/common.less'
 
 Vue.use(ElementUI)
 
