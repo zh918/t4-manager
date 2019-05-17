@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Progress from './progress'
 
 class http {
 	static post(url, parms={}, headers={}) {
@@ -11,15 +12,25 @@ class http {
 		}
 
 		var instance = axios.create({
-		timeout: 1000 * 30,
-		headers: option, //{'Authorization': option.Authorization}
-		onUploadProgress:function (progressEvent) {
-				if (progressEvent.total > 0) {
-			        progressEvent.percent = parseInt(progressEvent.loaded / progressEvent.total * 100);
-			    }
-
-			    globalVue.$emit('progress',progressEvent.percent);
+			timeout: 1000 * 30,
+			headers: option, //{'Authorization': option.Authorization}
+			maxContentLength: 2000,
+			withCredentials: false, // default
+			onprogress:function(event) {
+				console.log('onprogress', event)
 			},
+			onUploadProgress:function (progressEvent) {
+				// console.log('onUploadProgress',progressEvent)
+				
+		    globalVue.$emit('progress',progressEvent.percent);
+			},
+			onDownloadProgress: function (progressEvent) {
+		    if (progressEvent.total > 0) {
+		        progressEvent.percent = parseInt(progressEvent.loaded / progressEvent.total * 100);
+		    }
+
+		    Progress.drawTopLine(progressEvent.percent)
+		  },
 		});
 
 		return instance.post(url,parms).then(function(res){

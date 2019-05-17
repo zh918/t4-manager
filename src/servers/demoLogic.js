@@ -4,8 +4,24 @@ let n = 0;
 
 export default class DemoLogic {
 
+	static Login(parms) {
+		parms = {
+			userCode:'bgyms',
+			password:'bgyms',
+			clientId:'bgyfactorOmp'
+		}
+
+		return $http.post(url.getAccessToken, parms);
+	}
 
   static GetDemoData(parms) {
+  	parms = {
+			userCode:'bgyms',
+			password:'bgyms',
+			clientId:'bgyfactorOmp'
+		}
+
+		$http.post(url.getAccessToken, parms);
     // return $http.post(url.allDict, parms);
     return new Promise(function(resolve, reject){
     	n++;

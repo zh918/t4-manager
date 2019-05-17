@@ -2,7 +2,7 @@
 	<el-container style="height: 100%;">
 	  <el-header>{{systemTitle}}</el-header>
 	  <div class="http-line"></div>
-	  <div class="space-line"></div>
+	  <!-- <div class="space-line"></div> -->
 	  <el-container>
 	    <el-container>
 	      <el-main>
@@ -31,26 +31,16 @@
 	}
 </script>
 
-<style>
+<style lang="less" scoped>
+  .el-container {
+    background-color: #fafbfc; /*#3c4651;*/
+  }
+
   .el-header {
     background-color: #000;
     color: #fff;
     text-align: left;
     line-height: 60px;
-  }
-
-  .space-line {
-  	background-color: #fff;
-  	height: 5px;
-  	width: 100%;
-  }
-
-  .http-line {
-  	position: fixed;
-  	top: 0;
-  	background-color: red;
-  	height: 2px;
-  	width: 60%;
   }
 
   .el-footer {
