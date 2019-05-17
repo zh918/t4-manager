@@ -8,15 +8,15 @@
 			  <el-form-item prop="userPwd">
 			  	<el-input type="password" size="small" placeholder="请输入密码" prefix-icon="el-icon-lock" v-model="ruleForm.userPwd"  autocomplete="off"></el-input>
 			  </el-form-item>
-			  <el-form-item>
+			  <el-form-item class="clear-margin-bottom">
 			  	<el-checkbox-group size="small" v-model="ruleForm.isRemember">
 			      <el-checkbox label="记住密码" name="isRemember"></el-checkbox>
 			    </el-checkbox-group>
 			  </el-form-item>
-			  <el-form-item>
+			  <el-form-item class="clear-margin-bottom">
 			    <el-button type="primary" class="btn-login" size="small" @click="handleLogin('ruleForm')">登录</el-button>
 			  </el-form-item>
-			  <el-form-item label-position="right">
+			  <el-form-item class="clear-margin-bottom" label-position="right">
 			  	<div class="right">
 			  		<el-link type="info" :underline="false" href="/forgot">忘记密码?</el-link>
 			  	</div>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import api from '@/servers/demoLogic'
 	export default {
 		data() {
 			return {
@@ -50,7 +51,12 @@
 			handleLogin(formName) {
 				this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$router.push({path:'/home'})
+          	api.Login({}).then(result=>{
+          		if (result.errorCode == 0) {
+          			console.log('成功')
+            		this.$router.push({path:'/home'})
+          		}
+          	});
           } else {
             console.log('error submit!!');
             return false;
@@ -62,7 +68,7 @@
 	}
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 	.login-container {
 		display: flex;
 		justify-content: center;
@@ -74,10 +80,11 @@
 		.login-box {
 			position: relative;
 			width: 320px;
-			height: 210px;
+			height: auto;
 			padding: 10px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
+			background-color: #fff;
 
 			.login-ruleForm {
 				padding-top: 15px;
@@ -100,6 +107,10 @@
 
 		.el-button--mini, .el-button--small {
 			font-size: 14px;
+		}
+
+		.clear-margin-bottom {
+			margin-bottom: 0;
 		}
 	}
 

@@ -9,7 +9,7 @@
         </div>
         
       </el-header>
-  	  <div class="http-line"></div>
+  	  <div id="http_line" class="http-line"></div>
   	  <div class="space-line"></div>
   	  <el-container>
   	    <el-aside width="210px"><left-menu></left-menu></el-aside>
@@ -185,7 +185,7 @@
   	top: 0;
   	background-color: red;
   	height: 2px;
-  	width: 60%;
+  	/*width: 60%;*/
   }
 
   .el-footer {
