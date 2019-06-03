@@ -3,10 +3,11 @@
 		详情页
 		<el-button type="primary" size="mini" icon="el-icon-delete" @click="handleBack">返回</el-button>
 		<hr>
-		<grid-container>
+		<grid-container :cols="[8,4,4,8]">
 			<template #col1>33333</template>
 			<template #col2>444</template>
-			<!-- <template #col3>555</template> -->
+			<template #col3>555</template>
+			<template #col4>777</template>
 		</grid-container>
 		<grid-container>
 			<template #col1>33333</template>
@@ -50,8 +51,8 @@
 				  </el-form-item>
 				</template>
 			</grid-container>
-		  
-		   
+
+
 		  <el-form-item>
 		    <el-button type="primary" @click="submitForm('ruleForm')" size="small">立即创建</el-button>
 		    <el-button @click="resetForm('ruleForm')" size="small">重置</el-button>
@@ -96,4 +97,3 @@
 		}
 	}
 </script>
-
