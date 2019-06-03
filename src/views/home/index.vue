@@ -3,7 +3,7 @@
 		<search-container :initData="search" @search="initSearch"></search-container>
 		<operate-container :operateGroup="operateGroup"></operate-container>
 		<table-container :initHead="tableHead" :initData="tableData" :pagination="page">
-			<template #name="row">{{row.name}}stephen</template>
+			<template #name="row"><el-link :underline="false">{{row.name}}</el-link></template>
 			<template #city="row">{{row.city}}111</template>
 			<!-- <template #operate="row">操作哦</template> -->
 		</table-container>
@@ -60,6 +60,7 @@
 					{prop:"province", label:"省份"},
 					{prop:"city", label:"市区"},
 					{isOperate:true, prop:'operate', label:"详情", cb: (scope)=>{
+						console.log('socpe==>',scope);
 						this.$router.push({path:'/home/details'})
 					}},
 					{isOperate:true, prop:'operate', label:"删除", cb: this.handleOperateAdd},
@@ -79,13 +80,13 @@
 	      	total:0
 				}
 				// -------------------- 结束 --------------------
-			}		
+			}
 		},
 		craeted() {
 		},
 		methods: {
 			initSearch(parms, page) {
-				
+
 				console.log('参数',parms,page);
 
 				api.GetDemoData().then(result=>{
@@ -96,7 +97,7 @@
 				});
 
 
-				
+
 
 			},
 			handleOperateAdd() {
@@ -113,7 +114,7 @@
           this.$message({
             type: 'info',
             message: '已取消删除'
-          });          
+          });
         });
 			},
 		}

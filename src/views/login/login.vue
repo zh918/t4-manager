@@ -22,7 +22,7 @@
 			  	</div>
 			  </el-form-item>
 			</el-form>
-			
+
 		</div>
 	</div>
 </template>
@@ -51,18 +51,21 @@
 			handleLogin(formName) {
 				this.$refs[formName].validate((valid) => {
           if (valid) {
-          	api.Login({}).then(result=>{
-          		if (result.errorCode == 0) {
+          	api.Login(this.ruleForm).then(result=>{
+          		if (result.code) {
           			console.log('成功')
             		this.$router.push({path:'/home'})
           		}
+							else {
+								this.$message.error(result.msg);
+							}
           	});
           } else {
             console.log('error submit!!');
             return false;
           }
         });
-				
+
 			}
 		}
 	}

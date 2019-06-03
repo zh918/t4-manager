@@ -1,12 +1,12 @@
 // 通用
-import url from './urls' 
+import url from './urls'
 let n = 0;
 
 export default class DemoLogic {
 
 	static Login(parms) {
 		parms = {
-			userCode:'bgyms',
+			userCode: parms.userName,
 			password:'bgyms',
 			clientId:'bgyfactorOmp'
 		}

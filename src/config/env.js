@@ -5,7 +5,7 @@ const path = {
 
 if (process.env.NODE_ENV === 'dev') {
 	console.log('process.env.NODE_ENV',process.env.NODE_ENV)
-	path.authApi = 'http://192.168.1.50:7001'
+	path.authApi = 'http://192.168.7.29:3000'
 }
 else if (process.env.NODE_ENV === 'test') {
 	console.log('process.env.NODE_ENV',process.env.NODE_ENV)
