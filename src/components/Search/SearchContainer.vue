@@ -19,6 +19,15 @@
 		      placeholder="选择日期"
 		      clearable>
 		    </el-date-picker>
+				<el-autocomplete
+					v-else-if="item.type==='autocomplete'"
+		      class="inline-input"
+		      v-model="item.value"
+		      :fetch-suggestions="item.fetch"
+		      :placeholder="item.placeholder"
+		      :trigger-on-focus="false"
+		      @select="item.cb"
+		    ></el-autocomplete>
 
 			</el-col>
 			<el-col :offset="btn.offset" :span="btn.span">
@@ -110,11 +119,11 @@
 				this.search.components.forEach(function(c, i){
 					_this.search.parms[c.key] = c.value
 				});
-				
+
 				this.handleResetPage(resetPage)
 
 				window.searchCache = this.search;
-				
+
 				// this.$parent.initSearch(this.search.parms, this.search.page);
 				this.$listeners.search(this.search.parms, this.search.page);
 				// this.$emit('search', this.search.parms, this.search.page)
