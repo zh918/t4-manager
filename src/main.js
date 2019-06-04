@@ -7,6 +7,7 @@ import './common/http'
 import './components/index'
 import './common/storage'
 import {authRouter} from './common/auth'
+import './common/util'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
