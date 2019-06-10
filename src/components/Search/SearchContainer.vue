@@ -1,7 +1,7 @@
 <template>
 	<div class="search-container">
 		<el-row :gutter="20">
-			<el-col :span="item.span || 4" v-for="(item,index) in search.components">
+			<el-col :xs="24" :sm="24" :md="item.span || 4" :lg="item.span || 4" :xl="item.span || 4" v-for="(item,index) in search.components">
 				<el-input v-if="item.type==='input'" size="small" v-model="item.value" :placeholder="item.placeholder" clearable></el-input>
 				<el-select v-else-if="item.type==='select'" size="small" v-model="item.value" :placeholder="item.placeholder" clearable>
 			    <el-option
@@ -21,6 +21,7 @@
 		    </el-date-picker>
 				<el-autocomplete
 					v-else-if="item.type==='autocomplete'"
+					size="small"
 		      class="inline-input"
 		      v-model="item.value"
 		      :fetch-suggestions="item.fetch"
@@ -28,9 +29,29 @@
 		      :trigger-on-focus="false"
 		      @select="item.cb"
 		    ></el-autocomplete>
+				<el-date-picker
+					v-else-if="item.type==='daterange'"
+					size="small"
+					format="yy-M-d"
+		      v-model="item.value"
+		      type="daterange"
+		      range-separator="至"
+		      start-placeholder="开始日期"
+		      end-placeholder="结束日期">
+		    </el-date-picker>
+				<el-date-picker
+					v-else-if="item.type==='monthrange'"
+					size="small"
+					format="yy-M"
+		      v-model="item.value"
+		      type="monthrange"
+		      range-separator="至"
+		      start-placeholder="开始月份"
+		      end-placeholder="结束月份">
+		    </el-date-picker>
 
 			</el-col>
-			<el-col :offset="btn.offset" :span="btn.span">
+			<el-col :xs="24" :sm="24" :md="btn.span" :lg="btn.span" :xl="btn.span" :offset="btn.offset">
 				<el-button type="primary" size="small" icon="el-icon-search" @click="handleSearch(true)">搜索</el-button>
 				<el-button type="primary" size="small" icon="el-icon-delete" @click="handleReset">重置</el-button>
 			</el-col>

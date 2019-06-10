@@ -20,7 +20,7 @@
 	      width="220">
 	      <template slot-scope="scope">
 	      	<slot name="operate" v-bind="scope.row">
-		      	<el-button 
+		      	<el-button
 		      		v-for="(item, index) in initHead.filter(h=>h.isOperate)"
 		          @click.native.prevent="item.cb(scope)"
 		          type="text"
@@ -42,9 +42,9 @@
 		    :layout="page.layout"
 		    :total="pagination.total">
 		  </el-pagination>
-		</div>		
+		</div>
 	</div>
-		
+
 </template>
 
 <script>
@@ -52,7 +52,7 @@
   	name: "TableContainer",
   	props: ['initHead', 'initData', 'pagination'],
     data() {
-      return { 
+      return {
       	page: {
       		currentPage:1,
 	      	pageSizes:[10,50,100],
@@ -80,7 +80,7 @@
       deleteRow(index, rows) {
         rows.splice(index, 1);
       },
-      handleSizeChange(size) { 
+      handleSizeChange(size) {
       	this.page.pageSize = size;
       	globalVue.$emit("tableSearch", this.page)
       },

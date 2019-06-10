@@ -4,15 +4,15 @@
         <div class="header-left">{{systemTitle}}</div>
         <div class="header-right">
           <i class="el-icon-user"></i>&nbsp;stephen&nbsp;
-          <el-button type="text" @click="handleChangePwd('ruleForm')">修改密码</el-button>
+          <el-button type="text" @click="handleChangePwd('ruleForm')"  class="hidden-xs-only">修改密码</el-button>
           <el-button type="text" @click="handleLoginOut">退出</el-button>
         </div>
-        
+
       </el-header>
   	  <div id="http_line" class="http-line"></div>
   	  <div class="space-line"></div>
-  	  <el-container>
-  	    <el-aside width="210px"><left-menu></left-menu></el-aside>
+  	  <el-container class="overflow-y-auto">
+  	    <el-aside width="210px" class="hidden-xs-only"><left-menu></left-menu></el-aside>
   	    <el-container>
   	      <el-main>
   	      	<el-breadcrumb separator-class="el-icon-arrow-right">
@@ -22,17 +22,23 @@
             <div class="space-line"></div>
             <div class="space-line"></div>
             <div class="space-line"></div>
-  	      	<router-view></router-view>
+
+  	      	<router-view v-if="!tabs.show"></router-view>
+            <el-tabs v-else v-model="tabs.activeName" type="card" closable @tab-click="handleTabClick" @tab-remove="handleTabRemove">
+              <el-tab-pane :label="item.name" :name="item.id" :key="index" v-for="(item,index) in tabs.tabs">
+                <router-view></router-view>
+              </el-tab-pane>
+            </el-tabs>
   	      </el-main>
   	      <el-footer height="30">版权归属@T4管理系统</el-footer>
   	    </el-container>
   	  </el-container>
 
       <!-- 修改密码 -->
-      <el-dialog title="修改密码" 
-        :visible.sync="dialogFormVisible" 
-        :modal="true" 
-        :append-to-body="true" 
+      <el-dialog title="修改密码"
+        :visible.sync="dialogFormVisible"
+        :modal="true"
+        :append-to-body="true"
         width="500px">
         <el-form :model="formChangePwd" :rules="rules" ref="ruleForm" label-position="left" label-width="80px" size="small">
           <el-form-item label="原密码" prop="pwd1">
@@ -51,6 +57,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
 	import leftMenu from './leftMenu'
 
 	export default {
@@ -58,6 +65,12 @@
 			return {
 				systemTitle:'T4管理系统',
         breadcrumbs:[], // {name:'', path:''}
+        tabConfig:{
+          show:true,
+          tabs:[],
+          tabIndex:1,
+          activeName:null
+        },
 
         dialogFormVisible:false,
         formChangePwd:{
@@ -79,6 +92,7 @@
 			leftMenu
 		},
     computed: {
+      ...mapState(['tabs']),
       initBreadcrumb() {
         this.breadcrumbs = [];
         let fullPath = this.$route.fullPath;
@@ -105,11 +119,12 @@
             }
           }
         }
- 
+
         return this.breadcrumbs;
       }
     },
     created() {
+
 
     },
     methods: {
@@ -144,8 +159,15 @@
           this.$message({
             type: 'info',
             message: '已取退出'
-          });          
+          });
         });
+      },
+      // 点击tab
+      handleTabClick(tab) {
+        TabHelper.changeTab(tab.name);
+      },
+      handleTabRemove() {
+
       }
 
     }
@@ -196,33 +218,36 @@
     line-height: 30px;
     font-size: 12px;
   }
-  
+
   .el-aside {
   	height: 100%;
     background-color: #fff;
     color: #333;
     /*text-align: center;*/
-    line-height: 200px; 
+    line-height: 200px;
     overflow-y: auto;
   }
-  
+
   .el-main {
-  	
+
     /*background-color: #E9EEF3;*/
-    
+
   }
-  
+
   body > .el-container {
     margin-bottom: 40px;
   }
-  
+
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
-  
+
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
   }
 </style>
-	

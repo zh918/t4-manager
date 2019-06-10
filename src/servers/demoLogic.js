@@ -21,7 +21,7 @@ export default class DemoLogic {
 			clientId:'bgyfactorOmp'
 		}
 
-		$http.post(url.getAccessToken, parms);
+		// return $http.post(url.getAccessToken, parms);
     // return $http.post(url.allDict, parms);
     return new Promise(function(resolve, reject){
     	n++;

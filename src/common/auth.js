@@ -9,6 +9,8 @@ export const authRouter = (globalVue)=> {
 			next({name:'login'});
 		}
 		else{
+			// todo tabs处理
+			TabHelper.addTab(to);
 			next();
 		}
 	})
