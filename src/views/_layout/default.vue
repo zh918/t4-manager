@@ -234,9 +234,12 @@
 
   }
 
-  body > .el-container {
-    margin-bottom: 40px;
+  .el-container {
+    /* margin-bottom: 40px; */
+    height:100%;
   }
+
+
 
   .overflow-y-auto {
     overflow-y: auto;
