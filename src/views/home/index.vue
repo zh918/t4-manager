@@ -3,7 +3,7 @@
 		<search-container :initData="search" @search="initSearch"></search-container>
 		<operate-container :operateGroup="operateGroup"></operate-container>
 		<table-container :initHead="tableHead" :initData="tableData" :pagination="page">
-			<template #name="row">{{row.name}}stephen</template>
+			<template #name="row"><el-link :underline="false">{{row.name}}</el-link></template>
 			<template #city="row">{{row.city}}111</template>
 			<!-- <template #operate="row">操作哦</template> -->
 		</table-container>
@@ -19,21 +19,24 @@
 				// 检索栏
 				search: {
 					components:[
-						{key:'attrName1', type:'input', placeholder:'请输入1', value:''},
+						{key:'attrName1', type:'input', placeholder:'请输入11', value:''},
 						{key:'attrName2', type:'select', placeholder:'请输入2', value:'', options:[{label:'是',value:1},{label:'否',value:0}]},
 						{key:'attrName3', type:'input', placeholder:'请输入3', value:''},
 						{key:'attrName4', type:'date', placeholder:'请输入4', value:''},
 						{key:'attrName5', type:'input', placeholder:'请输入5', value:''},
-						{key:'attrName6', type:'input', placeholder:'请输入6', value:''},
-						{key:'attrName7', type:'input', placeholder:'请输入7', value:''},
+						// {key:'attrName6', type:'input', placeholder:'请输入6', value:''},
+						// {key:'attrName7', type:'input', placeholder:'请输入7', value:''},
 
 						{key:'attrName1', type:'input', placeholder:'请输入1', value:''},
 						{key:'attrName2', type:'input', placeholder:'请输入2', value:''},
 						{key:'attrName3', type:'input', placeholder:'请输入3', value:''},
 						{key:'attrName4', type:'input', placeholder:'请输入4', value:''},
 						{key:'attrName5', type:'input', placeholder:'请输入5', value:''},
-						{key:'attrName6', type:'input', placeholder:'请输入6', value:''},
-						{key:'attrName7', type:'input', placeholder:'请输入7', value:''},
+						// {key:'attrName6', type:'input', placeholder:'请输入6', value:''},
+						// {key:'attrName7', type:'input', placeholder:'请输入7', value:''},
+						{key:'attrName8', type:'autocomplete', placeholder:'补全检索', value:'', fetch: ()=>{console.log('fetch')}, cb: ()=>{console.log('123-cb')}},
+						{key:'attrName9', type:'daterange', placeholder:'请输入4', value:''},
+						{key:'attrName10', type:'monthrange', placeholder:'请输入4', value:''},
 					]
 				},
 				// 相关操作
@@ -60,6 +63,7 @@
 					{prop:"province", label:"省份"},
 					{prop:"city", label:"市区"},
 					{isOperate:true, prop:'operate', label:"详情", cb: (scope)=>{
+						console.log('socpe==>',scope);
 						this.$router.push({path:'/home/details'})
 					}},
 					{isOperate:true, prop:'operate', label:"删除", cb: this.handleOperateAdd},
@@ -79,13 +83,13 @@
 	      	total:0
 				}
 				// -------------------- 结束 --------------------
-			}		
+			}
 		},
 		craeted() {
 		},
 		methods: {
 			initSearch(parms, page) {
-				
+
 				console.log('参数',parms,page);
 
 				api.GetDemoData().then(result=>{
@@ -96,7 +100,7 @@
 				});
 
 
-				
+
 
 			},
 			handleOperateAdd() {
@@ -113,7 +117,7 @@
           this.$message({
             type: 'info',
             message: '已取消删除'
-          });          
+          });
         });
 			},
 		}

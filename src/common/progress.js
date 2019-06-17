@@ -8,7 +8,6 @@ export default class Progress {
 	 * @return {[type]}       [description]
 	 */
 	static drawTopLine(val) {
-		console.log(val)
 		let lineDom = document.querySelector('.http-line');
 		lineDom.style.visibility = 'visible';
 		lineDom.style.width = `${val}%`;
