@@ -51,7 +51,7 @@ class http {
 
 	}
 
-	static get() {
+	static get(url, parms={}, headers={}) {
 		let ran = Math.floor(Math.random() * 100);
 
 		let option = Object.assign({},headers);
