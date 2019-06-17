@@ -4,5 +4,5 @@ export default {
 
 	allDict:`${path.busApi}/api/common/select/codecode`,
 
-	getAccessToken:`${path.authApi}/api/oauth/token/getAccessToken`,
+	getAccessToken:`${path.authApi}/api/oauth/GetToken`,
 }

@@ -12,6 +12,6 @@ export default {
     },
     children:[
         {name:'用例列表',path:'/home', component:home},
-        {name:'详情',path:'/home/details', component:details}, 
+        {name:'详情',path:'/home/details', component:details},
     ]
 }

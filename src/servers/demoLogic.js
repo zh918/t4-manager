@@ -1,12 +1,12 @@
 // 通用
-import url from './urls' 
+import url from './urls'
 let n = 0;
 
 export default class DemoLogic {
 
 	static Login(parms) {
 		parms = {
-			userCode:'bgyms',
+			userCode: parms.userName,
 			password:'bgyms',
 			clientId:'bgyfactorOmp'
 		}
@@ -21,7 +21,7 @@ export default class DemoLogic {
 			clientId:'bgyfactorOmp'
 		}
 
-		$http.post(url.getAccessToken, parms);
+		// return $http.post(url.getAccessToken, parms);
     // return $http.post(url.allDict, parms);
     return new Promise(function(resolve, reject){
     	n++;

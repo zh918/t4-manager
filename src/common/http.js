@@ -4,7 +4,7 @@ import Progress from './progress'
 class http {
 	static post(url, parms={}, headers={}) {
 		let ran = Math.floor(Math.random() * 100);
-		let option = Object.assign({},headers);
+		let option = Object.assign({},{ 'content-type': 'application/json; charset=utf-8' },headers);
 		if(Cookie.get('accessToken')){
 			Object.assign(option,{Authorization : Cookie.get('accessToken')});
 		} else{
@@ -16,13 +16,10 @@ class http {
 			headers: option, //{'Authorization': option.Authorization}
 			maxContentLength: 2000,
 			withCredentials: false, // default
-			onprogress:function(event) {
-				console.log('onprogress', event)
-			},
 			onUploadProgress:function (progressEvent) {
 				// console.log('onUploadProgress',progressEvent)
-				
-		    globalVue.$emit('progress',progressEvent.percent);
+
+		    // globalVue.$emit('progress',progressEvent.percent);
 			},
 			onDownloadProgress: function (progressEvent) {
 		    if (progressEvent.total > 0) {
@@ -49,12 +46,12 @@ class http {
 				// setTimeout(()=>{
 				// 	globalVue.$router.push({path:'/login'});
 				// },800)
-			} 
+			}
 		});
 
 	}
 
-	static get() {
+	static get(url, parms={}, headers={}) {
 		let ran = Math.floor(Math.random() * 100);
 
 		let option = Object.assign({},headers);
