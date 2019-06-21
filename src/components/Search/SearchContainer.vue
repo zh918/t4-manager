@@ -110,7 +110,7 @@
 						this.btn.span = 4;
 					}
 					else {
-						this.btn.offset = 20;
+						this.btn.offset = cols - len - 4; //20;
 						this.btn.span = 4;
 					}
 				}

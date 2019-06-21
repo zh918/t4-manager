@@ -2,7 +2,7 @@ import * as types from './types'
 import actions from './actions'
 
 const state = {
-  show:true,
+  show:false,
   tabs:[],
   tabIndex:1,
   activeName:null
