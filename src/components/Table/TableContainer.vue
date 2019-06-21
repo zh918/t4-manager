@@ -82,11 +82,11 @@
       },
       handleSizeChange(size) {
       	this.page.pageSize = size;
-      	globalVue.$emit("tableSearch", this.page)
+      	this.$emit("tableSearch", this.page)
       },
       handleCurrentChange(pageIndex) {
       	this.page.currentPage = pageIndex;
-      	globalVue.$emit("tableSearch", this.page)
+      	this.$emit("tableSearch", this.page)
       }
     },
   }
