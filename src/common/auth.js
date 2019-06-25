@@ -9,6 +9,9 @@ export const authRouter = (globalVue)=> {
 			next({name:'login'});
 		}
 		else{
+			if (window.searchCache != null && to.query.c == 1 && to.path != searchCache.url_pathname) {
+				window.searchCache = null;
+			}
 			TabHelper.addTab(to);
 			next();
 		}

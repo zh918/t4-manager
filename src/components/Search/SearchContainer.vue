@@ -70,7 +70,13 @@
 						// {key:'attrName', type:'input', placeholder:'请输入', value:''}
 					],
 					parms:{},
-					page:{}
+					page:{
+						currentPage: 1,
+	          pageSizes: [10, 50, 100],
+	          pageSize: 10,
+	          layout: "total, sizes, prev, pager, next, jumper",
+	          total: 0
+					}
 				},
 				btn:{
 					span:8,
@@ -137,6 +143,9 @@
 			},
 			handleSearch(resetPage) {
 				let _this = this;
+				_this.search.url = location.href;
+      	_this.search.url_pathname = location.pathname;
+
 				this.search.components.forEach(function(c, i){
 					_this.search.parms[c.key] = c.value
 				});

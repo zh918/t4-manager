@@ -36,10 +36,10 @@
 		  <el-pagination
 		    @size-change="handleSizeChange"
 		    @current-change="handleCurrentChange"
-		    :current-page="pagination.currentPage"
-		    :page-sizes="page.pageSizes"
-		    :page-size="page.size"
-		    :layout="page.layout"
+		    :current-page.sync="pagination.currentPage"
+		    :page-sizes="pagination.pageSizes"
+		    :page-size.sync="pagination.size"
+		    :layout="pagination.layout"
 		    :total="pagination.total">
 		  </el-pagination>
 		</div>
@@ -63,28 +63,22 @@
 
       }
     },
-   	created() {
-   		if (window.searchCache) {
-				this.page.currentPage = window.searchCache.page.currentPage;
-			}
-
-   		if (this.$props.pagination) {
-	   		this.page.pageSizes = this.$props.pagination.pageSizes || this.page.pageSizes
-	   		this.page.pageSize = this.$props.pagination.pageSize || this.page.pageSize
-	   		this.page.layout = this.$props.pagination.layout || this.page.layout
-	   		// this.page.total = this.$props.pagination.total || this.page.total
-   		}
-
-   	},
+		updated() {
+			window.searchCache.page.currentPage = this.$props.pagination.currentPage
+			window.searchCache.page.total = this.$props.pagination.total
+			window.searchCache.page.pageSize = this.$props.pagination.pageSize
+		},
     methods: {
       deleteRow(index, rows) {
         rows.splice(index, 1);
       },
       handleSizeChange(size) {
+				this.page = this.$props.pagination
       	this.page.pageSize = size;
       	this.$emit("tableSearch", this.page)
       },
       handleCurrentChange(pageIndex) {
+				this.page = this.$props.pagination
       	this.page.currentPage = pageIndex;
       	this.$emit("tableSearch", this.page)
       }
